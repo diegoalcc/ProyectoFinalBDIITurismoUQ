@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.turismouq.ui.LiquidacionController"
+      spacing="0" style="-fx-background-color:#f4f6f9;">
+
+    <!-- Encabezado -->
+    <VBox style="-fx-background-color:white; -fx-border-color:transparent transparent #d0d7de transparent; -fx-border-width:0 0 1 0; -fx-padding:14 20 14 20;">
+        <Label text="Liquidación Mensual" styleClass="label-titulo"/>
+        <Label text="Calcula estadías + servicios por alojamiento en el mes seleccionado. Equivale al cursor c_liquidacion de PKG_TURISMOUQ."
+               styleClass="label-subtitulo" wrapText="true"/>
+    </VBox>
+
+    <VBox spacing="14" VBox.vgrow="ALWAYS" style="-fx-padding:16 20 16 20; -fx-background-color:#f4f6f9;">
+
+        <!-- Controles de período -->
+        <VBox styleClass="card" spacing="12">
+            <Label text="Período a liquidar" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <VBox spacing="4">
+                    <Label text="Mes:" styleClass="label-campo"/>
+                    <Spinner fx:id="spMes" prefWidth="80" editable="true"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Año:" styleClass="label-campo"/>
+                    <Spinner fx:id="spAnio" prefWidth="100" editable="true"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text=" " styleClass="label-campo"/>
+                    <Button text="📊  Generar liquidación" onAction="#onLiquidar"
+                            styleClass="button,btn-purple"
+                            prefHeight="34" prefWidth="200"
+                            style="-fx-font-size:14px;"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Tabla de resultados -->
+        <TableView fx:id="tblLiquidacion" VBox.vgrow="ALWAYS"
+                   tableMenuButtonVisible="true">
+            <columns>
+                <TableColumn fx:id="colAlojId"     text="ID"           prefWidth="75"/>
+                <TableColumn fx:id="colAlojNombre" text="Alojamiento"  prefWidth="250"/>
+                <TableColumn fx:id="colMunicipio"  text="Municipio"    prefWidth="140"/>
+                <TableColumn fx:id="colReservas"   text="Reservas"     prefWidth="95"/>
+                <TableColumn fx:id="colEstadias"   text="Estadías $"   prefWidth="140"/>
+                <TableColumn fx:id="colServicios"  text="Servicios $"  prefWidth="140"/>
+                <TableColumn fx:id="colTotal"      text="Total $"      prefWidth="150"/>
+            </columns>
+            <placeholder>
+                <Label text="Seleccione mes y año, luego presione 'Generar liquidación'." styleClass="label-estado"/>
+            </placeholder>
+        </TableView>
+
+        <!-- Barra de totales -->
+        <HBox styleClass="resumen-bar" spacing="0">
+            <Label fx:id="lblResumen" wrapText="true" maxWidth="Infinity"
+                   styleClass="resumen-bar-label" HBox.hgrow="ALWAYS"/>
+        </HBox>
+
+    </VBox>
+</VBox>

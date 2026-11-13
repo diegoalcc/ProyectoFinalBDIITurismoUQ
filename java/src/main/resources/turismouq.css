@@ -1,0 +1,439 @@
+/*
+ * TurismoUQ — Hoja de estilos global
+ * Paleta principal: azul-café (turismo Quindío)
+ * Tipografía base: 14px para garantizar legibilidad
+ */
+
+/* ============================================================
+   BASE — fuente, fondo de ventana y texto
+   ============================================================ */
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #f4f6f9;
+}
+
+/* ============================================================
+   BARRA DE PESTAÑAS (TabPane)
+   ============================================================ */
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: #1a3a5c;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: #244a72;
+    -fx-background-radius: 6 6 0 0;
+    -fx-padding: 8 18 8 18;
+    -fx-cursor: hand;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab .tab-label {
+    -fx-text-fill: #cce0ff;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #f4f6f9;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected .tab-label {
+    -fx-text-fill: #1a3a5c;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover:!selected {
+    -fx-background-color: #2d5f96;
+}
+
+.tab-pane .tab-content-area {
+    -fx-background-color: #f4f6f9;
+    -fx-padding: 0;
+}
+
+/* ============================================================
+   ENCABEZADO DE SECCIÓN (panel superior de cada tab)
+   ============================================================ */
+.section-header {
+    -fx-background-color: linear-gradient(to right, #1a3a5c, #2d6a9f);
+    -fx-padding: 12 16 12 16;
+    -fx-background-radius: 0 0 8 8;
+}
+
+.section-header-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.section-header-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #b8d4f0;
+}
+
+/* ============================================================
+   TARJETAS / PANELES
+   ============================================================ */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 6, 0, 0, 2);
+    -fx-padding: 14 16 14 16;
+}
+
+/* ============================================================
+   LABELS
+   ============================================================ */
+Label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+}
+
+.label-titulo {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a3a5c;
+}
+
+.label-subtitulo {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-style: italic;
+}
+
+.label-info {
+    -fx-font-size: 13px;
+    -fx-text-fill: #34495e;
+}
+
+.label-campo {
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+    -fx-font-size: 13px;
+}
+
+.label-estado {
+    -fx-font-size: 13px;
+    -fx-font-style: italic;
+    -fx-text-fill: #555e6b;
+}
+
+.label-error {
+    -fx-text-fill: #c0392b;
+    -fx-font-weight: bold;
+}
+
+.label-exito {
+    -fx-text-fill: #27ae60;
+    -fx-font-weight: bold;
+}
+
+.label-total {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a3a5c;
+    -fx-background-color: #d6e8f7;
+    -fx-background-radius: 6;
+    -fx-padding: 6 12 6 12;
+}
+
+/* ============================================================
+   CAMPOS DE TEXTO Y CONTROLES DE ENTRADA
+   ============================================================ */
+.text-field, .text-area {
+    -fx-background-color: white;
+    -fx-border-color: #b0bec5;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
+    -fx-padding: 6 10 6 10;
+    -fx-text-fill: #2c3e50;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: #2d6a9f;
+    -fx-effect: dropshadow(gaussian, rgba(45,106,159,0.3), 4, 0, 0, 0);
+}
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #b0bec5;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-font-size: 14px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #2d6a9f;
+}
+
+.combo-box .list-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 4 8 4 8;
+}
+
+.date-picker .text-field {
+    -fx-font-size: 14px;
+}
+
+.spinner .text-field {
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+}
+
+/* ============================================================
+   BOTONES — base
+   ============================================================ */
+.button {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 8 16 8 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 3, 0, 0, 1);
+}
+
+.button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.22), 5, 0, 0, 2);
+    -fx-translate-y: -1;
+}
+
+.button:pressed {
+    -fx-translate-y: 0;
+    -fx-effect: none;
+}
+
+/* Botón primario — azul institucional */
+.btn-primary {
+    -fx-background-color: #2d6a9f;
+    -fx-text-fill: white;
+}
+.btn-primary:hover { -fx-background-color: #245a8a; }
+
+/* Botón de acción positiva — verde */
+.btn-success {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+}
+.btn-success:hover { -fx-background-color: #219152; }
+
+/* Botón de peligro — rojo */
+.btn-danger {
+    -fx-background-color: #c0392b;
+    -fx-text-fill: white;
+}
+.btn-danger:hover { -fx-background-color: #a93226; }
+
+/* Botón de advertencia — naranja */
+.btn-warning {
+    -fx-background-color: #d35400;
+    -fx-text-fill: white;
+}
+.btn-warning:hover { -fx-background-color: #b74600; }
+
+/* Botón secundario — gris claro */
+.btn-secondary {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: #34495e;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1;
+}
+.btn-secondary:hover { -fx-background-color: #d5dbdb; }
+
+/* Botón purple — para liquidación/análisis */
+.btn-purple {
+    -fx-background-color: #8e44ad;
+    -fx-text-fill: white;
+}
+.btn-purple:hover { -fx-background-color: #76379a; }
+
+/* Botón analítico — índigo */
+.btn-analytics {
+    -fx-background-color: #34495e;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
+.btn-analytics:hover { -fx-background-color: #2c3e50; }
+
+/* Botón analítico activo (C5 fechas) */
+.btn-analytics-active {
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
+.btn-analytics-active:hover { -fx-background-color: #2471a3; }
+
+/* ============================================================
+   TABLAS (TableView)
+   ============================================================ */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #d0d7de;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #244a72;
+    -fx-background-radius: 6 6 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent #3a6490 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #eaecef transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 32px;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #cce0ff !important;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #e8f4fd;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 13px;
+    -fx-padding: 4 8 4 8;
+}
+
+.table-view .placeholder .label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #95a5a6;
+    -fx-font-style: italic;
+}
+
+/* ============================================================
+   LISTVIEW
+   ============================================================ */
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #b0bec5;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.list-cell {
+    -fx-font-size: 13px;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 6 10 6 10;
+}
+
+.list-cell:selected {
+    -fx-background-color: #cce0ff;
+    -fx-text-fill: #1a3a5c;
+}
+
+/* ============================================================
+   TITLED PANE
+   ============================================================ */
+.titled-pane > .title {
+    -fx-background-color: #d6e8f7;
+    -fx-background-radius: 6 6 0 0;
+    -fx-padding: 8 12 8 12;
+}
+
+.titled-pane > .title > .text {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-fill: #1a3a5c;
+}
+
+.titled-pane > .content {
+    -fx-background-color: #f8fbff;
+    -fx-border-color: #b8d4f0;
+    -fx-border-radius: 0 0 6 6;
+    -fx-background-radius: 0 0 6 6;
+}
+
+/* ============================================================
+   SEPARADOR
+   ============================================================ */
+.separator .line {
+    -fx-border-color: #d0d7de;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ============================================================
+   SPLIT PANE
+   ============================================================ */
+.split-pane {
+    -fx-background-color: #f4f6f9;
+    -fx-padding: 0;
+}
+
+.split-pane-divider {
+    -fx-background-color: #d0d7de;
+    -fx-padding: 0 2 0 2;
+}
+
+/* ============================================================
+   BARRA DE DESPLAZAMIENTO
+   ============================================================ */
+.scroll-bar .thumb {
+    -fx-background-color: #aab8c2;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #7f8c8d;
+}
+
+/* ============================================================
+   PANEL DE TOTAL / RESUMEN (barra inferior de liquidación)
+   ============================================================ */
+.resumen-bar {
+    -fx-background-color: #244a72;
+    -fx-background-radius: 6;
+    -fx-padding: 10 16 10 16;
+}
+
+.resumen-bar-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* ============================================================
+   PANEL DE C5 (dashboard — fechas)
+   ============================================================ */
+.c5-panel {
+    -fx-background-color: white;
+    -fx-border-color: #b8d4f0;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12 8 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 4, 0, 0, 1);
+}
+
+/* ============================================================
+   BARRA DE HERRAMIENTAS DEL DASHBOARD
+   ============================================================ */
+.dashboard-toolbar {
+    -fx-background-color: white;
+    -fx-border-color: #d0d7de;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 10 12 10 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 4, 0, 0, 1);
+}

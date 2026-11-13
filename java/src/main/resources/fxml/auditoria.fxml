@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.turismouq.ui.AuditoriaController"
+      spacing="0" style="-fx-background-color:#f4f6f9;">
+
+    <!-- Encabezado -->
+    <VBox style="-fx-background-color:white; -fx-border-color:transparent transparent #d0d7de transparent; -fx-border-width:0 0 1 0; -fx-padding:14 20 14 20;">
+        <Label text="Auditoría de Tarifas" styleClass="label-titulo"/>
+        <Label text="Historial de INSERT / UPDATE / DELETE en la tabla TARIFA, registrado por el trigger compuesto trg_tarifa_auditoria."
+               styleClass="label-subtitulo" wrapText="true"/>
+    </VBox>
+
+    <VBox spacing="12" VBox.vgrow="ALWAYS" style="-fx-padding:16 20 16 20; -fx-background-color:#f4f6f9;">
+
+        <!-- Filtros -->
+        <VBox styleClass="card" spacing="10">
+            <Label text="Filtros de búsqueda" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <HBox spacing="16" alignment="CENTER_LEFT">
+                <VBox spacing="4">
+                    <Label text="Usuario BD:" styleClass="label-campo"/>
+                    <TextField fx:id="tfFiltroUsuario" prefWidth="170"
+                               promptText="Ej: TURISMOUQ"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Operación:" styleClass="label-campo"/>
+                    <ComboBox fx:id="cbFiltroOperacion" prefWidth="130"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="ID Habitación:" styleClass="label-campo"/>
+                    <TextField fx:id="tfFiltroHabitacion" prefWidth="120"
+                               promptText="Ej: 42"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text=" " styleClass="label-campo"/>
+                    <HBox spacing="8">
+                        <Button text="🔍  Filtrar" onAction="#onBuscar"
+                                styleClass="button,btn-primary" prefHeight="32"/>
+                        <Button text="✖  Limpiar" onAction="#onLimpiar"
+                                styleClass="button,btn-secondary" prefHeight="32"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Leyenda de operaciones -->
+        <HBox spacing="16" alignment="CENTER_LEFT"
+              style="-fx-padding:6 10 6 10; -fx-background-color:white; -fx-background-radius:6; -fx-border-color:#d0d7de; -fx-border-radius:6;">
+            <Label text="Leyenda:" style="-fx-font-weight:bold; -fx-font-size:12px; -fx-text-fill:#34495e;"/>
+            <Label text="  INSERT  " style="-fx-background-color:#e6f4ea; -fx-background-radius:4; -fx-font-size:12px; -fx-padding:2 6 2 6; -fx-text-fill:#1e6e3a;"/>
+            <Label text="  UPDATE  " style="-fx-background-color:#e8f0fe; -fx-background-radius:4; -fx-font-size:12px; -fx-padding:2 6 2 6; -fx-text-fill:#1a4fa0;"/>
+            <Label text="  DELETE  " style="-fx-background-color:#fce8e6; -fx-background-radius:4; -fx-font-size:12px; -fx-padding:2 6 2 6; -fx-text-fill:#9b2a1a;"/>
+        </HBox>
+
+        <!-- Tabla -->
+        <TableView fx:id="tblAuditoria" VBox.vgrow="ALWAYS"
+                   tableMenuButtonVisible="true">
+            <columns>
+                <TableColumn fx:id="colId"         text="ID"           prefWidth="75"/>
+                <TableColumn fx:id="colUsuario"    text="Usuario BD"   prefWidth="140"/>
+                <TableColumn fx:id="colFecha"      text="Fecha / Hora" prefWidth="175"/>
+                <TableColumn fx:id="colOperacion"  text="Operación"    prefWidth="100"/>
+                <TableColumn fx:id="colTarifa"     text="ID Tarifa"    prefWidth="90"/>
+                <TableColumn fx:id="colHabitacion" text="ID Hab."      prefWidth="85"/>
+                <TableColumn fx:id="colTemporada"  text="ID Temp."     prefWidth="85"/>
+                <TableColumn fx:id="colAnterior"   text="Precio ant."  prefWidth="130"/>
+                <TableColumn fx:id="colNuevo"      text="Precio nuevo" prefWidth="130"/>
+            </columns>
+            <placeholder>
+                <Label text="Sin registros de auditoría. Modifique una tarifa para generar uno." styleClass="label-estado"/>
+            </placeholder>
+        </TableView>
+
+        <Label fx:id="lblConteo" styleClass="label-estado" wrapText="true"/>
+
+    </VBox>
+</VBox>

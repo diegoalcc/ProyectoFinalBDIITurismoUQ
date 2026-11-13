@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.turismouq.ui.MainController"
+      spacing="0">
+
+    <!-- ===== BARRA DE ENCABEZADO INSTITUCIONAL ===== -->
+    <HBox styleClass="section-header" alignment="CENTER_LEFT" spacing="16">
+        <VBox spacing="2">
+            <Label text="TurismoUQ" styleClass="section-header-title"/>
+            <Label text="Sistema de Gestión Turística del Quindío · Universidad del Quindío · BD II 2026-2"
+                   styleClass="section-header-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox alignment="CENTER_RIGHT" spacing="2">
+            <Label text="Entrega 3" style="-fx-font-size:11px; -fx-text-fill:#90c4f0; -fx-font-weight:bold;"/>
+            <Label text="Transacciones · Índices · Seguridad" style="-fx-font-size:10px; -fx-text-fill:#7ab3d8;"/>
+        </VBox>
+    </HBox>
+
+    <!-- ===== PESTAÑAS PRINCIPALES ===== -->
+    <TabPane VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="📋  Nueva Reserva">
+                <fx:include source="reservas.fxml"/>
+            </Tab>
+            <Tab text="🔍  Consultar Reservas">
+                <fx:include source="reservas_lista.fxml"/>
+            </Tab>
+            <Tab text="💳  Pagos">
+                <fx:include source="pagos.fxml"/>
+            </Tab>
+            <Tab text="🛎  Servicios">
+                <fx:include source="servicios.fxml"/>
+            </Tab>
+            <Tab text="📊  Liquidación">
+                <fx:include source="liquidacion.fxml"/>
+            </Tab>
+            <Tab text="🔒  Auditoría">
+                <fx:include source="auditoria.fxml"/>
+            </Tab>
+            <Tab text="📈  Dashboard">
+                <fx:include source="dashboard.fxml"/>
+            </Tab>
+        </tabs>
+    </TabPane>
+
+</VBox>

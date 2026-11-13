@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.turismouq.ui.PagosController"
+      spacing="0" style="-fx-background-color:#f4f6f9;">
+
+    <!-- Encabezado -->
+    <VBox style="-fx-background-color:white; -fx-border-color:transparent transparent #d0d7de transparent; -fx-border-width:0 0 1 0; -fx-padding:14 20 14 20;">
+        <Label text="Gestión de Pagos" styleClass="label-titulo"/>
+        <Label text="Consulte el saldo de una reserva, registre abonos o procese cancelaciones con reembolso."
+               styleClass="label-subtitulo" wrapText="true"/>
+    </VBox>
+
+    <VBox spacing="14" VBox.vgrow="ALWAYS" style="-fx-padding:16 20 16 20; -fx-background-color:#f4f6f9;">
+
+        <!-- TARJETA 1: Buscar reserva -->
+        <VBox styleClass="card" spacing="12">
+            <Label text="1. Seleccionar reserva" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <VBox spacing="4">
+                    <Label text="ID Reserva:" styleClass="label-campo"/>
+                    <TextField fx:id="tfReserva" prefWidth="140"
+                               promptText="Ej: 1001"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text=" " styleClass="label-campo"/>
+                    <Button text="🔍  Consultar saldo" onAction="#onConsultar"
+                            styleClass="button,btn-primary" prefHeight="32"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- TARJETA 2: Registrar abono -->
+        <VBox styleClass="card" spacing="12">
+            <Label text="2. Registrar abono" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <HBox spacing="16" alignment="CENTER_LEFT">
+                <VBox spacing="4">
+                    <Label text="Monto del abono ($):" styleClass="label-campo"/>
+                    <TextField fx:id="tfMonto" prefWidth="150"
+                               promptText="Ej: 250000"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Método de pago:" styleClass="label-campo"/>
+                    <ComboBox fx:id="cbMetodo" prefWidth="200"
+                              promptText="Seleccione método"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text=" " styleClass="label-campo"/>
+                    <Button text="💳  Registrar abono" onAction="#onAbonar"
+                            styleClass="button,btn-success" prefHeight="32"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- TARJETA 3: Cancelación -->
+        <VBox styleClass="card" spacing="8">
+            <Label text="3. Cancelar reserva" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Button text="❌  Cancelar con reembolso" onAction="#onCancelar"
+                        styleClass="button,btn-danger" prefHeight="34"/>
+                <Label text="Esta acción cancela la reserva y calcula el reembolso según la política vigente."
+                       styleClass="label-estado" wrapText="true" maxWidth="500"/>
+            </HBox>
+        </VBox>
+
+        <!-- Info y estado -->
+        <Label fx:id="lblInfo" wrapText="true"
+               style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c; -fx-background-color:white; -fx-background-radius:6; -fx-padding:10 14 10 14; -fx-border-color:#d0d7de; -fx-border-radius:6;"
+               maxWidth="Infinity"/>
+
+        <!-- Historial de pagos -->
+        <VBox spacing="6" VBox.vgrow="ALWAYS">
+            <Label text="Historial de pagos de la reserva"
+                   style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <TableView fx:id="tblPagos" VBox.vgrow="ALWAYS"
+                       tableMenuButtonVisible="true">
+                <columns>
+                    <TableColumn fx:id="colId"     text="ID Pago"  prefWidth="90"/>
+                    <TableColumn fx:id="colFecha"  text="Fecha"    prefWidth="150"/>
+                    <TableColumn fx:id="colMonto"  text="Monto"    prefWidth="140"/>
+                    <TableColumn fx:id="colMetodo" text="Método"   prefWidth="180"/>
+                    <TableColumn fx:id="colEstado" text="Estado"   prefWidth="130"/>
+                </columns>
+                <placeholder>
+                    <Label text="Consulte una reserva para ver su historial de pagos." styleClass="label-estado"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+    </VBox>
+</VBox>
