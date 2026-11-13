@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.turismouq.ui.ReservasListaController"
+      spacing="0" style="-fx-background-color:#f4f6f9;">
+
+    <!-- Encabezado -->
+    <VBox style="-fx-background-color:white; -fx-border-color:transparent transparent #d0d7de transparent; -fx-border-width:0 0 1 0; -fx-padding:14 20 14 20;">
+        <Label text="Consultar Reservas" styleClass="label-titulo"/>
+        <Label text="Busque reservas por cliente, alojamiento o estado. Las filas se colorean según el estado de la reserva."
+               styleClass="label-subtitulo" wrapText="true"/>
+    </VBox>
+
+    <VBox spacing="12" VBox.vgrow="ALWAYS" style="-fx-padding:16 20 16 20; -fx-background-color:#f4f6f9;">
+
+        <!-- Panel de filtros -->
+        <VBox styleClass="card" spacing="10">
+            <Label text="Filtros de búsqueda" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <HBox spacing="14" alignment="CENTER_LEFT">
+                <VBox spacing="4">
+                    <Label text="Cliente (nombre o documento):" styleClass="label-campo"/>
+                    <TextField fx:id="tfFiltroCliente" prefWidth="230"
+                               promptText="Ej: García  o  10000001"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Alojamiento:" styleClass="label-campo"/>
+                    <TextField fx:id="tfFiltroAlojamiento" prefWidth="210"
+                               promptText="Ej: Hotel Quindío"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text="Estado:" styleClass="label-campo"/>
+                    <ComboBox fx:id="cbFiltroEstado" prefWidth="150"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text=" " styleClass="label-campo"/>
+                    <HBox spacing="8">
+                        <Button text="🔍  Buscar" onAction="#onBuscar"
+                                styleClass="button,btn-primary" prefHeight="32"/>
+                        <Button text="✖  Limpiar" onAction="#onLimpiar"
+                                styleClass="button,btn-secondary" prefHeight="32"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+            <Label fx:id="lblResultado" styleClass="label-estado"/>
+        </VBox>
+
+        <!-- Leyenda de colores -->
+        <HBox spacing="16" alignment="CENTER_LEFT"
+              style="-fx-padding:6 10 6 10; -fx-background-color:white; -fx-background-radius:6; -fx-border-color:#d0d7de; -fx-border-radius:6;">
+            <Label text="Leyenda:" style="-fx-font-weight:bold; -fx-font-size:12px; -fx-text-fill:#34495e;"/>
+            <Label text="  CONFIRMADA  " style="-fx-background-color:#e6f4ea; -fx-background-radius:4; -fx-font-size:12px; -fx-padding:2 6 2 6; -fx-text-fill:#1e6e3a;"/>
+            <Label text="  COMPLETADA  " style="-fx-background-color:#e8f0fe; -fx-background-radius:4; -fx-font-size:12px; -fx-padding:2 6 2 6; -fx-text-fill:#1a4fa0;"/>
+            <Label text="  CANCELADA  "  style="-fx-background-color:#fce8e6; -fx-background-radius:4; -fx-font-size:12px; -fx-padding:2 6 2 6; -fx-text-fill:#9b2a1a;"/>
+            <Label text="  PENDIENTE  "  style="-fx-background-color:#fef9e7; -fx-background-radius:4; -fx-font-size:12px; -fx-padding:2 6 2 6; -fx-text-fill:#7d6608;"/>
+        </HBox>
+
+        <!-- Tabla -->
+        <TableView fx:id="tblReservas" VBox.vgrow="ALWAYS"
+                   tableMenuButtonVisible="true">
+            <columns>
+                <TableColumn fx:id="colId"        text="ID Reserva" prefWidth="100"/>
+                <TableColumn fx:id="colIdCliente" text="ID Cliente"  prefWidth="100"/>
+                <TableColumn fx:id="colCliente"   text="Cliente"     prefWidth="240"/>
+                <TableColumn fx:id="colCheckin"   text="Check-in"    prefWidth="120"/>
+                <TableColumn fx:id="colCheckout"  text="Check-out"   prefWidth="120"/>
+                <TableColumn fx:id="colEstado"    text="Estado"      prefWidth="130"/>
+            </columns>
+            <placeholder>
+                <Label text="No hay reservas que coincidan con los filtros." styleClass="label-estado"/>
+            </placeholder>
+        </TableView>
+
+    </VBox>
+</VBox>

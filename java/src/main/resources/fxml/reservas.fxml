@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.turismouq.ui.ReservasController"
+      spacing="0" style="-fx-background-color:#f4f6f9;">
+
+    <!-- Encabezado de sección -->
+    <VBox style="-fx-background-color:white; -fx-border-color:transparent transparent #d0d7de transparent; -fx-border-width:0 0 1 0; -fx-padding:14 20 14 20;">
+        <Label text="Nueva Reserva" styleClass="label-titulo"/>
+        <Label text="Complete los datos del cliente, alojamiento y habitaciones. Puede agregar varias habitaciones antes de confirmar."
+               styleClass="label-subtitulo" wrapText="true"/>
+    </VBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background-color:#f4f6f9; -fx-background:#f4f6f9; -fx-border-color:transparent;">
+        <VBox spacing="14" style="-fx-padding:16 20 16 20; -fx-background-color:#f4f6f9;">
+
+            <!-- TARJETA 1: Ubicación y cliente -->
+            <VBox styleClass="card" spacing="12">
+                <Label text="1. Selección de alojamiento y cliente" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+                <GridPane hgap="16" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="130" maxWidth="150"/>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="160"/>
+                        <ColumnConstraints minWidth="130" maxWidth="150"/>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="200"/>
+                    </columnConstraints>
+
+                    <Label text="Municipio:" styleClass="label-campo" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <ComboBox fx:id="cbMunicipio" prefWidth="200" maxWidth="Infinity"
+                              onAction="#onMunicipio" promptText="Seleccione municipio"
+                              GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Alojamiento:" styleClass="label-campo" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                    <ComboBox fx:id="cbAlojamiento" prefWidth="260" maxWidth="Infinity"
+                              onAction="#onAlojamiento" promptText="Seleccione alojamiento"
+                              GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                    <Label text="Cliente:" styleClass="label-campo" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <ComboBox fx:id="cbCliente" prefWidth="300" maxWidth="Infinity"
+                              promptText="Buscar cliente por nombre o documento"
+                              GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="3"/>
+                </GridPane>
+            </VBox>
+
+            <!-- TARJETA 2: Habitación y fechas -->
+            <VBox styleClass="card" spacing="12">
+                <Label text="2. Habitación y fechas de estadía" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+                <GridPane hgap="16" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="130" maxWidth="150"/>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="180"/>
+                        <ColumnConstraints minWidth="100" maxWidth="120"/>
+                        <ColumnConstraints minWidth="150"/>
+                        <ColumnConstraints minWidth="100" maxWidth="120"/>
+                        <ColumnConstraints minWidth="150"/>
+                    </columnConstraints>
+
+                    <Label text="Habitación:" styleClass="label-campo" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <ComboBox fx:id="cbHabitacion" prefWidth="220" maxWidth="Infinity"
+                              promptText="Seleccione habitación"
+                              GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                    <Label text="Huéspedes:" styleClass="label-campo" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                    <TextField fx:id="tfHuespedes" prefWidth="70" text="2"
+                               GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+                    <Label text="Check-in:" styleClass="label-campo" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <DatePicker fx:id="dpIn" prefWidth="160"
+                                GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                    <Label text="Check-out:" styleClass="label-campo" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                    <DatePicker fx:id="dpOut" prefWidth="160"
+                                GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                </GridPane>
+
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="➕  Agregar habitación" onAction="#onAgregarHabitacion"
+                            styleClass="button,btn-success" prefHeight="34"/>
+                    <Button text="🧮  Calcular valor" onAction="#onCalcular"
+                            styleClass="button,btn-analytics-active" prefHeight="34"/>
+                    <Label fx:id="lblValor"
+                           style="-fx-font-size:14px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c; -fx-padding:0 0 0 8;"
+                           text="Valor estimado: $0"/>
+                </HBox>
+            </VBox>
+
+            <!-- TARJETA 3: Líneas agregadas -->
+            <VBox styleClass="card" spacing="8">
+                <Label text="3. Habitaciones en esta reserva" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+                <ListView fx:id="lvLineas" prefHeight="110" styleClass="list-view">
+                    <placeholder>
+                        <Label text="Aún no ha agregado habitaciones. Use el botón '➕ Agregar habitación' arriba."
+                               styleClass="label-estado"/>
+                    </placeholder>
+                </ListView>
+            </VBox>
+
+            <!-- TARJETA 4: Confirmar reserva -->
+            <VBox styleClass="card" spacing="10">
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Button text="✅  Crear Reserva" onAction="#onCrearReserva"
+                            styleClass="button,btn-primary"
+                            prefHeight="38" prefWidth="180"
+                            style="-fx-font-size:14px;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="lblMensaje" wrapText="true"
+                           style="-fx-font-size:13px; -fx-font-weight:bold;"
+                           maxWidth="600"/>
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </ScrollPane>
+</VBox>

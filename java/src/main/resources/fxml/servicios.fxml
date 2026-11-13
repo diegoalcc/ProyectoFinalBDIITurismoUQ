@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.turismouq.ui.ServiciosController"
+      spacing="0" style="-fx-background-color:#f4f6f9;">
+
+    <!-- Encabezado -->
+    <VBox style="-fx-background-color:white; -fx-border-color:transparent transparent #d0d7de transparent; -fx-border-width:0 0 1 0; -fx-padding:14 20 14 20;">
+        <Label text="Servicios Complementarios" styleClass="label-titulo"/>
+        <Label text="Agregue o quite servicios adicionales (desayuno, tour, transporte, etc.) a una reserva existente."
+               styleClass="label-subtitulo" wrapText="true"/>
+    </VBox>
+
+    <VBox spacing="12" VBox.vgrow="ALWAYS" style="-fx-padding:16 20 16 20; -fx-background-color:#f4f6f9;">
+
+        <!-- Buscar reserva -->
+        <VBox styleClass="card" spacing="10">
+            <Label text="Reserva a gestionar" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <VBox spacing="4">
+                    <Label text="ID Reserva:" styleClass="label-campo"/>
+                    <TextField fx:id="tfIdReserva" prefWidth="140" promptText="Ej: 1001"/>
+                </VBox>
+                <VBox spacing="4">
+                    <Label text=" " styleClass="label-campo"/>
+                    <Button text="📂  Cargar servicios" onAction="#onConsultarReserva"
+                            styleClass="button,btn-primary" prefHeight="32"/>
+                </VBox>
+                <Label fx:id="lblInfoReserva" styleClass="label-estado" wrapText="true" maxWidth="500"/>
+            </HBox>
+        </VBox>
+
+        <!-- Split: disponibles / contratados -->
+        <SplitPane orientation="VERTICAL" VBox.vgrow="ALWAYS"
+                   dividerPositions="0.52"
+                   style="-fx-background-color:#f4f6f9; -fx-padding:0;">
+
+            <!-- Panel superior: servicios disponibles -->
+            <VBox spacing="8"
+                  style="-fx-background-color:white; -fx-background-radius:8; -fx-padding:12 14 12 14; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.08),6,0,0,2);">
+                <Label text="Servicios disponibles en el alojamiento"
+                       style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+                <TableView fx:id="tblDisponibles" VBox.vgrow="ALWAYS"
+                           tableMenuButtonVisible="true">
+                    <columns>
+                        <TableColumn fx:id="colDispId"     text="ID"           prefWidth="65"/>
+                        <TableColumn fx:id="colDispNombre" text="Servicio"      prefWidth="230"/>
+                        <TableColumn fx:id="colDispDesc"   text="Descripción"   prefWidth="270"/>
+                        <TableColumn fx:id="colDispPrecio" text="Precio unit."  prefWidth="120"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Cargue una reserva para ver los servicios disponibles." styleClass="label-estado"/>
+                    </placeholder>
+                </TableView>
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="Cantidad:" styleClass="label-campo"/>
+                    <Spinner fx:id="spCantidad" prefWidth="90" editable="true"/>
+                    <Button text="➕  Agregar a la reserva" onAction="#onAgregarServicio"
+                            styleClass="button,btn-success" prefHeight="32"/>
+                </HBox>
+            </VBox>
+
+            <!-- Panel inferior: servicios contratados -->
+            <VBox spacing="8"
+                  style="-fx-background-color:white; -fx-background-radius:8; -fx-padding:12 14 12 14; -fx-effect:dropshadow(gaussian,rgba(0,0,0,0.08),6,0,0,2);">
+                <Label text="Servicios contratados en esta reserva"
+                       style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+                <TableView fx:id="tblContratados" VBox.vgrow="ALWAYS"
+                           tableMenuButtonVisible="true">
+                    <columns>
+                        <TableColumn fx:id="colContId"      text="ID"        prefWidth="65"/>
+                        <TableColumn fx:id="colContNombre"  text="Servicio"  prefWidth="230"/>
+                        <TableColumn fx:id="colContDetalle" text="Detalle"   prefWidth="270"/>
+                        <TableColumn fx:id="colContTotal"   text="Total"     prefWidth="120"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="Sin servicios contratados." styleClass="label-estado"/>
+                    </placeholder>
+                </TableView>
+                <HBox spacing="10">
+                    <Button text="🗑  Quitar servicio seleccionado" onAction="#onQuitarServicio"
+                            styleClass="button,btn-danger" prefHeight="32"/>
+                </HBox>
+            </VBox>
+
+        </SplitPane>
+
+        <Label fx:id="lblMensaje" wrapText="true"
+               style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+
+    </VBox>
+</VBox>

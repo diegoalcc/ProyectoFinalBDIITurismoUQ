@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.turismouq.ui.DashboardController"
+      spacing="0" style="-fx-background-color:#f4f6f9;">
+
+    <!-- Encabezado -->
+    <VBox style="-fx-background-color:white; -fx-border-color:transparent transparent #d0d7de transparent; -fx-border-width:0 0 1 0; -fx-padding:14 20 14 20;">
+        <Label text="Dashboard Gerencial" styleClass="label-titulo"/>
+        <Label text="Consultas analíticas avanzadas: PIVOT, ROLLUP, RANK, LAG, UNPIVOT y consultas libres sobre la operación turística."
+               styleClass="label-subtitulo" wrapText="true"/>
+    </VBox>
+
+    <VBox spacing="12" VBox.vgrow="ALWAYS" style="-fx-padding:16 20 16 20; -fx-background-color:#f4f6f9;">
+
+        <!-- Barra de consultas rápidas -->
+        <VBox styleClass="dashboard-toolbar" spacing="8">
+            <Label text="Consultas analíticas" style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Button text="📊 C1 · Ocupación PIVOT"
+                        onAction="#onC1"
+                        styleClass="button,btn-analytics"
+                        prefWidth="175" prefHeight="38"
+                        style="-fx-font-size:12px; -fx-background-color:#1a3a5c;"/>
+                <Button text="💰 C2 · Ingresos ROLLUP"
+                        onAction="#onC2"
+                        styleClass="button,btn-analytics"
+                        prefWidth="175" prefHeight="38"
+                        style="-fx-font-size:12px; -fx-background-color:#215074;"/>
+                <Button text="🏆 C3 · Top 3 RANK"
+                        onAction="#onC3"
+                        styleClass="button,btn-analytics"
+                        prefWidth="155" prefHeight="38"
+                        style="-fx-font-size:12px; -fx-background-color:#8e44ad;"/>
+                <Button text="📈 C4 · Variación LAG"
+                        onAction="#onC4"
+                        styleClass="button,btn-analytics"
+                        prefWidth="155" prefHeight="38"
+                        style="-fx-font-size:12px; -fx-background-color:#d35400;"/>
+                <Button text="🔄 C6 · UNPIVOT"
+                        onAction="#onC6"
+                        styleClass="button,btn-analytics"
+                        prefWidth="135" prefHeight="38"
+                        style="-fx-font-size:12px; -fx-background-color:#27ae60;"/>
+                <Button text="⭐ C7 · Demanda + Reseñas"
+                        onAction="#onC7"
+                        styleClass="button,btn-analytics"
+                        prefWidth="195" prefHeight="38"
+                        style="-fx-font-size:12px; -fx-background-color:#c0392b;"/>
+            </HBox>
+        </VBox>
+
+        <!-- C5 parametrizada con fechas -->
+        <HBox styleClass="c5-panel" spacing="14" alignment="CENTER_LEFT">
+            <Label text="🗓 C5 · Reservas por rango de fechas"
+                   style="-fx-font-size:13px; -fx-font-weight:bold; -fx-text-fill:#1a3a5c;"/>
+            <VBox spacing="4">
+                <Label text="Desde:" styleClass="label-campo"/>
+                <DatePicker fx:id="dpDesde" prefWidth="150"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Hasta:" styleClass="label-campo"/>
+                <DatePicker fx:id="dpHasta" prefWidth="150"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text=" " styleClass="label-campo"/>
+                <Button text="🔍  Buscar" onAction="#onC5"
+                        styleClass="button,btn-analytics-active"
+                        prefHeight="32" prefWidth="120"/>
+            </VBox>
+            <Label text="Usa PreparedStatement con bind parameters (equivale a VARIABLE en SQL*Plus)"
+                   styleClass="label-estado" wrapText="true" maxWidth="320"/>
+        </HBox>
+
+        <!-- Tabla dinámica de resultados -->
+        <TableView fx:id="tblDatos" VBox.vgrow="ALWAYS"
+                   tableMenuButtonVisible="true">
+            <placeholder>
+                <Label text="Seleccione una consulta del panel superior para ver los resultados." styleClass="label-estado"/>
+            </placeholder>
+        </TableView>
+
+        <!-- Barra de estado -->
+        <Label fx:id="lblDash" styleClass="label-estado" wrapText="true"/>
+
+    </VBox>
+</VBox>
